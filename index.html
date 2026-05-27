@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardim do Pastel - Flores & Arte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GERAIS E PALETA PASTEL --- */
+        :root {
+            --bg-principal: #f7f4ef;    /* Creme pastel suave */
+            --rosa-pastel: #fbc4ab;     /* Rosa pêssego */
+            --azul-pastel: #cce3de;     /* Verde/Azul água */
+            --amarelo-pastel: #fdedc9;   /* Amarelo baunilha */
+            --verde-folha: #a3b19b;      /* Verde oliva pastel */
+            --texto-escuro: #4a4e69;     /* Roxo acinzentado para leitura */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-principal);
+            color: var(--texto-escuro);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- MENU DE NAVEGAÇÃO --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px dashed rgba(163, 177, 155, 0.3);
+        }
+
+        .logo {
+            font-family: 'Caveat', cursive;
+            font-size: 2.2rem;
+            color: var(--texto-escuro);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--rosa-pastel);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--texto-escuro);
+            margin-left: 30px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--rosa-pastel);
+        }
+
+        /* --- SESSÃO HERO (DESTAQUE) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 8% 60px 8%;
+            position: relative;
+        }
+
+        .hero-conteudo {
+            max-width: 50%;
+        }
+
+        .hero-conteudo h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--texto-escuro);
+        }
+
+        .hero-conteudo h1 span {
+            font-family: 'Caveat', cursive;
+            color: var(--rosa-pastel);
+            font-size: 4.5rem;
+        }
+
+        .hero-conteudo p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #6c757d;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--rosa-pastel);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(251, 196, 171, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(251, 196, 171, 0.6);
+        }
+
+        /* --- DESENHO DA FLOR EM CSS --- */
+        .hero-desenho {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flor-container {
+            position: relative;
+            animation: balanco 6s ease-in-out infinite;
+        }
+
+        /* Miolo da flor */
+        .miolo {
+            width: 80px;
+            height: 80px;
+            background-color: var(--amarelo-pastel);
+            border-radius: 50%;
+            position: relative;
+            z-index: 10;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Pétalas */
+        .petala {
+            width: 70px;
+            height: 110px;
+            background-color: var(--rosa-pastel);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            position: absolute;
+            opacity: 0.9;
+            border: 2px solid #fff;
+            transform-origin: bottom center;
+            bottom: 40px;
+            left: 5px;
+        }
+
+        /* Posicionamento circular das pétalas */
+        .p1 { transform: rotate(0deg); }
+        .p2 { transform: rotate(60deg); background-color: #fcd5ce; }
+        .p3 { transform: rotate(120deg); }
+        .p4 { transform: rotate(180deg); background-color: #fcd5ce; }
+        .p5 { transform: rotate(240deg); }
+        .p6 { transform: rotate(300deg); background-color: #fcd5ce; }
+
+        /* Caule e folha */
+        .caule {
+            width: 8px;
+            height: 180px;
+            background-color: var(--verde-folha);
+            position: absolute;
+            top: 70px;
+            left: 41px;
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        .folha {
+            width: 40px;
+            height: 70px;
+            background-color: var(--verde-folha);
+            border-radius: 0 50% 0 50%;
+            position: absolute;
+            top: 120px;
+            left: 48px;
+            transform: rotate(-15deg);
+            border: 2px solid #fff;
+        }
+
+        /* --- SESSÃO GALERIA DE DESENHOS --- */
+        .galeria {
+            padding: 80px 8%;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .galeria h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .galeria h2::after {
+            content: '🌸';
+            position: absolute;
+            right: -40px;
+            top: 5px;
+            font-size: 1.5rem;
+        }
+
+        .galeria p {
+            color: #888;
+            margin-bottom: 50px;
+        }
+
+        .grid-flores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card-flor {
+            background-color: var(--bg-principal);
+            padding: 40px 20px;
+            border-radius: 20px;
+            border: 2px dashed var(--azul-pastel);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-flor:hover {
+            transform: scale(1.05);
+        }
+
+        /* Miniaturas de desenhos em CSS */
+        .mini-flor {
+            width: 100px;
+            height: 150px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .card-flor h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .card-flor p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Variações das flores da galeria */
+        .azul-petala { background-color: var(--azul-pastel) !important; }
+        .amarelo-petala { background-color: var(--amarelo-pastel) !important; }
+
+        /* --- RODAPÉ --- */
+        footer {
+            background-color: #f1ebd9;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            color: #8a8f96;
+            border-top: 2px dashed var(--verde-folha);
+        }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes balanco {
+            0%, 100% { transform: rotate(-5deg) translateY(0); }
+            50% { transform: rotate(5deg) translateY(-10px); }
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            nav { display: none; } /* Simplificado para mobile */
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 140px;
+            }
+            .hero-conteudo { max-width: 100%; }
+            .hero-conteudo h1 { font-size: 2.5rem; }
+            .hero-conteudo h1 span { font-size: 3.5rem; }
+            .hero-desenho { margin-bottom: 40px; width: 300px; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Jardim<span>Pastel</span></a>
+        <nav>
+            <a href="#">Início</a>
+            <a href="#galeria">Coleção</a>
+            <a href="#sobre">Sobre</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-conteudo">
+            <h1>Ilustrações de <br><span>Flores Lindas</span></h1>
+            <p>Explore a suavidade e a doçura da natureza através de traços delicados, desenhos minimalistas e uma paleta de cores pastel apaixonante feita para acalmar os olhos e a alma.</p>
+            <a href="#galeria" class="btn">Ver Coleção</a>
+        </div>
+
+        <div class="hero-desenho">
+            <div class="flor-container">
+                <div class="petala p1"></div>
+                <div class="petala p2"></div>
+                <div class="petala p3"></div>
+                <div class="petala p4"></div>
+                <div class="petala p5"></div>
+                <div class="petala p6"></div>
+                <div class="miolo"></div>
+                <div class="caule"></div>
+                <div class="folha"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="galeria" id="galeria">
+        <h2>Nossa Coleção</h2>
+        <p>Cada traço reflete a leveza e a beleza do desabrochar.</p>
+
+        <div class="grid-flores">
+            <div class="card-flor">
+                <div class="mini-flor">
+                    <div class="flor-container" style="transform: scale(0.6); top: -20px;">
+                        <div class="petala p1"></div><div class="petala p2"></div><div class="petala p3"></div>
+                        <div class="petala p4"></div><div class="petala p5"></div><div class="petala p6"></div>
+                        <div class="miolo"></div><div class="caule"></div><div class="folha"></div>
+                    </div>
+                </div>
+                <h3>Margarida Doce</h3>
+                <p>Traços finos e pétalas em tom rosa pêssego aconchegante.</p>
+            </div>
+
+            <div class="card-flor">
+                <div class="mini-flor">
+                    <div class="flor-container" style="transform: scale(0.6); top: -20px;">
+                        <div class="petala p1 azul-petala"></div><div class="petala p2 azul-petala"></div><div class="petala p3 azul-petala"></div>
+                        <div class="petala p4 azul-petala"></div><div class="petala p5 azul-petala"></div><div class="petala p6 azul-petala"></div>
+                        <div class="miolo" style="background-color: var(--rosa-pastel);"></div><div class="caule"></div><div class="folha"></div>
+                    </div>
+                </div>
+                <h3>Brisa Celeste</h3>
+                <p>O frescor do azul pastel unido à delicadeza do desenho.</p>
+            </div>
+
+            <div class="card-flor">
+                <div class="mini-flor">
+                    <div class="flor-container" style="transform: scale(0.6); top: -20px;">
+                        <div class="petala p1 amarelo-petala"></div><div class="petala p2 amarelo-petala"></div><div class="petala p3 amarelo-petala"></div>
+                        <div class="petala p4 amarelo-petala"></div><div class="petala p5 amarelo-petala"></div><div class="petala p6 amarelo-petala"></div>
+                        <div class="miolo"></div><div class="caule"></div><div class="folha" style="transform: scaleX(-1) rotate(-15deg); left: 0px;"></div>
+                    </div>
+                </div>
+                <h3>Raio de Sol</h3>
+                <p>A energia suave do amarelo baunilha para iluminar o dia.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Jardim Pastel. Feito com 🌸 e muito carinho.</p>
+    </footer>
+
+</body>
+</html>
