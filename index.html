@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jardim do Pastel - Flores & Arte</title>
+    <title>Jardim Pastel - Flores & Arte</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -236,6 +236,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow: hidden; /* Evita que o caule das mini-flores saia do card */
         }
 
         .card-flor:hover {
@@ -263,6 +264,23 @@
         /* Variações das flores da galeria */
         .azul-petala { background-color: var(--azul-pastel) !important; }
         .amarelo-petala { background-color: var(--amarelo-pastel) !important; }
+
+        /* --- SESSÃO SOBRE --- */
+        .sobre {
+            padding: 90px 8%;
+            text-align: center;
+            background-color: var(--bg-principal);
+        }
+
+        .sobre-conteudo {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .sobre h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
 
         /* --- RODAPÉ --- */
         footer {
@@ -369,6 +387,13 @@
                 <h3>Raio de Sol</h3>
                 <p>A energia suave do amarelo baunilha para iluminar o dia.</p>
             </div>
+        </div>
+    </section>
+
+    <section class="sobre" id="sobre">
+        <div class="sobre-conteudo">
+            <h2>Sobre o Jardim</h2>
+            <p>O Jardim Pastel é um espaço conceitual criado para espalhar calma e sensibilidade artística. Aqui, o design minimalista se une à botânica digital para dar vida a produtos criativos, papelaria e ilustrações feitas com amor.</p>
         </div>
     </section>
 
